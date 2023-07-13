@@ -1,0 +1,39 @@
+{%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
+                {%- endif -%}
+                {% if product.variants.size == 1 %}
+                  <li class="grid__item">
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: lazy_load,
+                      show_quick_add: section.settings.enable_quick_add,
+                      section_id: section.id
+                    %}
+                  </li>
+                {% endif %}
+                {% for variant in product.variants %}
+                  {% assign modified_title = product.title | append: ' - ' | append: variant.title %}
+                  {% unless variant.title == 'Default Title' %}
+                    <li class="grid__item">
+                      {% render 'card-variant',
+                        card_product: variant,
+                        card_title: modified_title,
+                        product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        show_quick_add: section.settings.enable_quick_add,
+                        section_id: section.id
+                      %}
+                    </li>
+                  {% endunless %}
+                {% endfor %}
+              {%- endfor -%}
