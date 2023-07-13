@@ -1,5 +1,5 @@
 # Variants as Products Shopify
-This code snippet aims to display variants as separate items in the collection of your Shopify store. This has been tested on Dawn Theme v.7.0.1
+This code snippet aims to display variants as separate items in the collection page of your Shopify store. This has been tested on Dawn Theme v.7.0.1
 
 Instructions:
 1. Open your theme's code and the file `main-collection-product-grid.liquid`
@@ -13,4 +13,4 @@ Additionnal info: if you want to display the original product and its variants i
 
  `{% if product.variants.size == 1 %}`
 
-It's also recommended to go into your `component-card.css` to add the property `z-index: 1;` to the class `.card__badge` (otherwise the image goes in front of the Sold Out/Sale badge).
+I also recommended going into your `component-card.css` to add the property `z-index: 1;` to the class `.card__badge` (otherwise the image goes in front of the Sold Out/Sale badge).
